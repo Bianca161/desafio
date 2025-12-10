@@ -66,3 +66,66 @@
         }
     }
 </script>
+
+let alunos = ["João", "Maria", "Pedro", "Ana", "Carlos"];
+let notas = []; // cada aluno terá um array com 4 notas
+
+// 1. Função para validar notas (entre 0 e 10)
+function validarNota(nota) {
+    while (nota < 0 || nota > 10 || isNaN(nota)) {
+        nota = parseFloat(prompt("Nota inválida! Digite novamente (0 a 10):"));
+    }
+    return nota;
+}
+
+// 2. Função para adicionar notas
+function adicionarNotas() {
+    for (let i = 0; i < alunos.length; i++) {
+        let notasAluno = [];
+        for (let j = 0; j < 4; j++) {
+            let nota = parseFloat(prompt(`Digite a nota ${j+1} de ${alunos[i]}:`));
+            nota = validarNota(nota);
+            notasAluno.push(nota);
+        }
+        notas.push(notasAluno);
+    }
+}
+
+// 3. Função para calcular média
+function calcularMedia(notasAluno) {
+    let soma = 0;
+    for (let i = 0; i < notasAluno.length; i++) {
+        soma += notasAluno[i];
+    }
+    return soma / notasAluno.length;
+}
+
+// 4. Função para classificar desempenho
+function classificarDesempenho(media) {
+    if (media >= 9) {
+        return "Excelente";
+    } else if (media >= 7) {
+        return "Bom";
+    } else if (media >= 5) {
+        return "Regular";
+    } else {
+        return "Insuficiente";
+    }
+}
+
+// 5. Função para gerar relatório
+function gerarRelatorio() {
+    for (let i = 0; i < alunos.length; i++) {
+        let media = calcularMedia(notas[i]);
+        let desempenho = classificarDesempenho(media);
+        console.log(`Aluno: ${alunos[i]}`);
+        console.log(`Notas: ${notas[i].join(", ")}`);
+        console.log(`Média: ${media.toFixed(2)}`);
+        console.log(`Classificação: ${desempenho}`);
+        console.log("----------------------------");
+    }
+}
+
+// Execução do programa
+adicionarNotas();
+gerarRelatorio();
