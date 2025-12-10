@@ -1,68 +1,63 @@
 <script>
 
-  let alunos = ["João", "Maria", "Pedro", "Ana", "Carlos"];
-  let notas = [// cada elemento é um array com 4 notas, ex: [8, 7.5, 9, 10]// 
-  ];
+let alunos = ["João", "Maria", "Pedro", "Ana", "Carlos"];
+let notas = []; // aqui vamos guardar as notas de cada aluno
 
-  // Processamento
-
-  function validarNota() {
-    let nota = Number(prompt("Informe a nota do aluno de 0 a 10"));
-    while (isNaN(nota) || nota < 0 || nota > 10) {
-      alert("Nota inválida, digite novamente");
-      nota = Number(prompt("Informe a nota do aluno de 0 a 10"));
-    }
-    return nota;
+function validarNota() {
+  let nota = Number(prompt("Informe a nota do aluno de 0 a 10"));
+  while (isNaN(nota) || nota < 0 || nota > 10) {
+    alert("Nota inválida, digite novamente");
+    nota = Number(prompt("Informe a nota do aluno de 0 a 10"));
   }
+  return nota;
+}
 
-  function adicionarNota() {
-    const notas = [];
-    for (let i = 1; i <= 4; i++) {
-      alert(`Digite a nota do ${i}º bimestre`);
-      notas.push(validarNota());
-    }
-    return notas;
+function adicionarNota() {
+  const notasAluno = [];
+  for (let i = 1; i <= 4; i++) {
+    alert(`Digite a nota do ${i}º bimestre`);
+    notasAluno.push(validarNota());
   }
+  return notasAluno;
+}
 
-  function media(notas) {
-    let soma = 0;
-    for (let i = 0; i < notas.length; i++) {
-      soma += notas[i];
-    }
-    return soma / notas.length;
+function calcularMedia(notasAluno) {
+  let soma = 0;
+  for (let i = 0; i < notasAluno.length; i++) {
+    soma += notasAluno[i];
   }
+  return soma / notasAluno.length;
+}
 
-  function classificacao(media) {
-    if (media >= 9) {
-      return "Excelente";
-    } else if (media >= 7) {
-      return "Bom";
-    } else if (media >= 5) {
-      return "Regular";
-    } else {
-      return "Insuficiente";
-    }
+function classificarDesempenho(media) {
+  if (media >= 9) {
+    return "Excelente";
+  } else if (media >= 7) {
+    return "Bom";
+  } else if (media >= 5) {
+    return "Regular";
+  } else {
+    return "Insuficiente";
   }
+}
 
-  function gerarRelatorio() {
-    for (let i = 0; i < notas.length; i++) {
-      const element = array[i];
-      let media = media(notas[i]);
-      let classificacao = classificacao(media);
-      console.log(`aluno: ${alunos[i]}`)
-      console.log("nota  ${notas.")
-      console.log("media")
-      console.log("classificacao")
-    }
+function gerarRelatorio() {
+  for (let i = 0; i <script alunos.length; i++) {
+    let notasAluno = adicionarNota();
+    let mediaAluno = calcularMedia(notasAluno);
+    let desempenho = classificarDesempenho(mediaAluno);
+
+    console.log(`Aluno: ${alunos[i]}`);
+    console.log(`Notas: ${notasAluno.join(" - ")}`);
+    console.log(`Média: ${mediaAluno.toFixed(2)}`);
+    console.log(`Classificação: ${desempenho}`);
+    console.log("-------------------------");
+
+    notas.push(notasAluno); // guarda as notas de cada aluno no array global
   }
+}
 
-  // Exibição 
-  const notasAluno = adicionarNota();
-  const mediaAluno = media(notasAluno);
-  const desempenho = classificacao(mediaAluno);
-
-  console.log("Notas do aluno:", notasAluno.join(" - "));
-  console.log("Média do aluno:", mediaAluno.toFixed(2));
-  console.log("Desempenho:", desempenho);
+// Programa principal
+gerarRelatorio();
 
 </script>
