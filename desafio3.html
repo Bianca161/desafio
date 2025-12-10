@@ -1,1 +1,68 @@
+<script>
+    let nomeProdutos = ["Arroz", "Feijão", "Açúcar", "Sal"];
+    let quantidades = [50, 30, 20, 15];
+    let precos = [3.50, 8.00, 4.50, 2.00];
 
+    // Processamento
+    function adicionarProduto(nome, quantidade, preco) {
+        produto.push(nome);
+        quantidade.push(quantidade);
+        valor.push(preco);
+
+        return `Produto "${nome}" adicionado com sucesso!`;
+    }
+
+    function removerProduto(nome) {
+        const indice = produto.indexOf(nome);
+        if (indice === -1) {
+            return `produto "${nome}" não encontrado!`;
+        }
+
+        const produtoRemovido = produto.splice(indice, 1);
+        categorias.splice(indice, 1);
+
+        return `produto "${produtoRemovido[0]}" removido com sucesso!`;
+    }
+
+    /*function listarLivros() {
+        let relatorio = "=== LIVROS CADASTRADOS ===\n\n";
+        for (let i = 0; i < categorias.length; i++) {
+            relatorio += `Livro: ${livros[i]} - Categoria: ${categorias[i]}\n`;
+        }
+        return relatorio;
+    }
+*/
+
+    // Exibição
+    let opcao = 1;
+    while (opcao > 0) {
+        opcao = parseInt(prompt(
+            "=== Adicionar Produtos ===\n\n" +
+            "1. Adicionar Produto\n" +
+            "2. Remover Produto\n" +
+            "3. Ajustar Proço\n" +
+            "0. Sair\n\n" +
+            "Escolha uma opção:"
+        ));
+        switch (opcao) {
+            case 1:
+                let nomeProduto = prompt("Digite o nome do produto:");
+                let valorProduto = prompt("Digite o valor do produto:");
+                let quantidadeProduto = prompt("Digite quantos produtos");
+                alert(adicionarproduto(nomeProduto, valorProduto, quantidadeProduto));
+                break;
+            case 2:
+                let produtoRemovido = prompt("Digite o nome do produto a ser removido:");
+                alert(removerProduto(produtoRemovido));
+                break;
+            case 3:
+                alert(listarLivros());
+                break;
+            case 0:
+                alert("Saindo...");
+                break;
+            default:
+                alert("Opção inválida!");
+        }
+    }
+</script>
